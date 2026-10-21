@@ -1,0 +1,32 @@
+---
+title: "prac1"
+author: "Andy Shan"
+---
+exc1
+```{r}
+round(3.14159)
+```
+ExerciseExercise - Argument order
+```{r}
+print(rep(x = 5, times = 7))
+print(rep(5,7))
+```
+Exercise - Character, numerical and logical variables
+```{r}
+c<-"cat"
+n<-5
+b<-TRUE
+print(c(class(c),class(n),class(b)))
+```
+ExerciseExercise - Using variables of different types
+```{r}
+
+cell_id_1 <- "CX1"
+cell_id_2 <- "CX2"
+treated_1 <- TRUE
+treated_2 <- FALSE
+n_cells_before_1 <- 5415
+n_cells_before_2 <- 8123
+n_cells_after_1 <- 1432
+n_cells_after_2 <- 7543
+```

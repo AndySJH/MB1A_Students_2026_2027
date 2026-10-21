@@ -1,0 +1,26 @@
+---
+title: "ukhsa_data_analysis"
+author: "Andy Shan"
+---
+```{r}
+library(tidyverse)
+library(gt)
+```
+Data used: Number of mpox cases in England by month
+```{r}
+mpoxdata<-read_csv("data/ukhsa-chart-download.csv")
+gt(head(mpoxdata))
+```
+
+Plotting the data
+```{r}
+
+ggplot(mpoxdata, aes(
+  x = date,
+  y = `Clade IIb`,
+)) +
+  geom_line(colour = "red") +
+  xlab("Date") +
+  ylab("Number of Cases") +
+  ggtitle("Number of mpox Clade IIb cases over time")
+```

@@ -1,0 +1,38 @@
+---
+title: "prac3_exercises"
+author: "AndyShan"
+---
+```{r}
+library(tidyverse)
+library(gt)
+```
+
+
+```{r}
+set.seed(42)
+```
+
+```{r}
+for (i in seq_len(20)){
+  si<-i^2
+  print(si)
+}
+for (i in seq_len(5)){
+str<-paste(sample(letters, 5, replace = TRUE), collapse="")
+print(str)
+}
+```
+
+```{r}
+breakfast <- c("eggs", "bacon", "sausages", "toast")
+menu<-tibble()
+for (i in seq_len(10)){
+  new_row<- tibble(
+    food_item = sample(breakfast, 1),
+    food_amount = sample(1:5,1)
+  )
+  menu <- menu|>bind_rows(new_row)
+}
+gt(menu)
+```
+

@@ -43,4 +43,45 @@ ggplot(geo, aes(
   ylab("Density") +
   theme_minimal()
 ```
+```{r}
+neudata <- read_csv("data/neurons.csv")
+colnames(neudata)
+ggplot(neudata, aes(x=Inter_Spike_Interval))+
+geom_histogram(bins=50)
+
+```
+```{r}
+most_wait<-max(neudata)
+most_wait
+sample_mean_wait_time <- mean(pull(neudata, Inter_Spike_Interval))
+n_observations <- nrow(neudata)
+lambda <- 1 / sample_mean_wait_time
+```
+
+```{r}
+max_w <- c()
+for (i in seq_len(1000)){
+  ex_data <- rexp(n=n_observations, rate = lambda)
+  max_w <- c(max_w, max(ex_data))
+}
+maxw_df<- tibble(Max_W_Time = max_w)
+```
+```{r}
+ggplot(maxw_df,aes(x=Max_W_Time))+
+  geom_histogram(bins=50)+
+  geom_vline(xintercept = most_wait, colour="red")
+```
+```{r}
+
+n_not_bigger <- maxw_df |>
+  filter(Max_W_Time <= most_wait)
+prop <- nrow(n_not_bigger) / nrow(maxw_df)
+print(prop)
+```
+```{r}
+prob_one_wt <- pexp(most_wait, rate = lambda)
+print(prob_one_wt)
+prob_all_wt <- prob_one_wt^n_observations
+print(prob_all_wt)
+```
 
